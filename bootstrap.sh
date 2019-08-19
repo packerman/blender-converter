@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 apt-get update
-apt-get install -y git build-essential cmake
+apt-get install -y git build-essential cmake dos2unix
 
 mkdir -p ~/blender-git
 cd ~/blender-git
@@ -14,7 +14,8 @@ if ! [ -d blender ]; then
     git submodule foreach git pull --rebase origin master
 
     # you can create a new patch by 'git diff > python_compile_configure.patch'
-    git apply /vagrant/python_compile_configure.patch
+    dos2unix -n /vagrant/python_compile_configure.patch python_compile_configure.patch 
+    git apply python_compile_configure.patch
 fi
 
 cd ~/blender-git
@@ -34,4 +35,4 @@ cmake ../blender \
 make install
 
 ln -sf /opt/lib/python-3.7/bin/python3.7 /usr/local/bin/python-bpy
-echo "Use python-bpy command"
+echo "Run python-bpy command"
