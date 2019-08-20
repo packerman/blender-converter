@@ -13,13 +13,13 @@ if ! [ -d blender ]; then
     git submodule foreach git checkout master
     git submodule foreach git pull --rebase origin master
 
-    # you can create a new patch by 'git diff > python_compile_configure.patch'
-    dos2unix -n /vagrant/python_compile_configure.patch python_compile_configure.patch 
-    git apply python_compile_configure.patch
+    # you can create a new patch by 'git diff > install_deps.sh.patch'
+    dos2unix -n /vagrant/install_deps.sh.patch install_deps.sh.patch
+    git apply install_deps.sh.patch
 fi
 
 cd ~/blender-git
-./blender/build_files/build_environment/install_deps.sh --build-python --force-python --build-numpy --force-numpy --no-confirm
+./blender/build_files/build_environment/install_deps.sh --with-opencollada --build-python --force-python --build-numpy --force-numpy --no-confirm
 
 mkdir -p ~/blender-git/build
 cd ~/blender-git/build
@@ -29,6 +29,7 @@ cmake ../blender \
     -DWITH_PYTHON_MODULE=ON \
     -DWITH_INSTALL_PORTABLE=OFF \
     -DWITH_OPENAL=OFF \
+    -DWITH_OPENCOLLADA=ON \
     -DPYTHON_SITE_PACKAGES=/opt/lib/python-3.7/lib/python3.7/site-packages \
     -DPYTHON_ROOT_DIR=/opt/lib/python-3.7
 
