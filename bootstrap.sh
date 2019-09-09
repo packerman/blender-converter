@@ -26,6 +26,7 @@ cd ~/blender-git/build
 cmake ../blender \
     -DWITH_PYTHON_INSTALL=OFF \
     -DWITH_PLAYER=OFF \
+    -DWITH_CYCLES=OFF \
     -DWITH_PYTHON_MODULE=ON \
     -DWITH_INSTALL_PORTABLE=OFF \
     -DWITH_OPENAL=OFF \
@@ -35,5 +36,9 @@ cmake ../blender \
 
 make install
 
+apt-get install -y virtualenv
+
 ln -sf /opt/lib/python-3.7/bin/python3.7 /usr/local/bin/python-bpy
-echo "Run python-bpy command"
+echo "alias virtualenv-bpy='virtualenv -p python-bpy'" >> /etc/bash.bashrc
+
+echo "Run python-bpy and virtualenv-bpy command"
