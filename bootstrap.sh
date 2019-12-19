@@ -8,7 +8,7 @@ cd ~/blender-git
 if ! [ -d blender ]; then
     git clone https://git.blender.org/blender.git
     cd blender
-    git checkout v2.80
+    git checkout v2.81
     git submodule update --init --recursive
     git submodule foreach git checkout master
     git submodule foreach git pull --rebase origin master
